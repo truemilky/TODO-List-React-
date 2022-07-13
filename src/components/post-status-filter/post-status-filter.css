@@ -1,0 +1,32 @@
+.btn-filter {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 15px;
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .2s ease-in-out;
+}
+
+.btn-filter.active {
+    background-color: rgb(255, 145, 0);
+    color: #fff;
+}
+
+.btn-filter:hover {
+    background-color: rgba(255, 251, 17, 0.847);
+    transition: background-color .2s ease-in-out;
+}
+
+.btn-filter.active:hover {
+    background-color: rgba(255, 251, 17, 0.847);
+    color: #000;
+}
+
+@media(max-width: 820px) {
+    .btn-group {
+        width: 150px;
+    }
+}

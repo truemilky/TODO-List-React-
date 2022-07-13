@@ -1,0 +1,92 @@
+.app-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    color: rgb(63, 62, 62);
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color .2s ease-in-out;
+}
+
+.app-list-interactives {
+    min-width: 75px;
+}
+
+.app-list-item.active {
+    background-color: rgb(255, 224, 98);
+    transition: background-color .2s ease-in-out;
+}
+
+.btn-star, .btn-trash, .btn-heart  {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+.fa-star {
+   color: rgb(118, 118, 118);
+   cursor: pointer;
+   transition: color .2s ease-in-out;
+}
+.fa-star:hover {
+    color: rgba(255, 153, 0, 0.46);
+    transition: color .2s ease-in-out;
+}
+
+.fa-star.active {
+    color: rgb(255, 153, 0);
+}
+
+.fa-trash-o {
+    cursor: pointer;
+    transition: color .2s ease-in-out;
+}
+
+.fa-trash-o:hover {
+    color:rgb(255, 153, 0);
+    transition: color .2s ease-in-out;
+}
+
+.fa-heart {
+    font-size: 14px;
+    color: rgb(176, 176, 176);
+    margin-left: 3px;
+    cursor: pointer;
+    transition: color .2s ease-in-out;
+}
+
+.fa-heart:hover {
+    color: rgba(255, 0, 0, 0.542);
+    transition: color .2s ease-in-out;
+}
+
+.fa-heart.active {
+    color: red;
+}
+
+@media(max-width: 820px) {
+    .app-list-item {
+        align-items: start;
+    }
+    .app-list-item-label {
+        overflow-x: hidden;
+    }
+    .app-list-interactives {
+        display: flex;
+        flex-direction: column;
+        min-width: auto;
+    }
+    .app-list-item{
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .form-conrol {
+        padding-right: 15px;
+    }
+}

@@ -1,0 +1,27 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(63, 62, 62);
+    margin-bottom: 20px;
+}
+
+@media(max-width: 820px) {
+    .app-header {
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 440px) {
+    .app-header {
+        flex-direction: column;
+    }
+
+    .app-header h1 {
+        font-size: 25px;
+    }
+
+    .app-header h2 {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,42 @@
+.dots-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgb(63, 62, 62);
+    margin: 3px;
+    animation: dots-animation infinite 2s ease-in-out;
+}
+
+@keyframes dots-animation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media(max-width: 820px) {
+    .dots-wrapper {
+        right: 15px;
+    }
+}
+@media(max-width: 820px) {
+    .dots-wrapper {
+        display: none;
+    }
+}
