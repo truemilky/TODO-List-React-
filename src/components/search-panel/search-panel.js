@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./search-panel.css"
 
 export default class SearchPanel extends Component {
@@ -17,20 +17,20 @@ export default class SearchPanel extends Component {
         this.setState({
             term
         })
-        
+
         this.props.onUpdateSearch(term);
     }
 
     render() {
         return (
             <div className="form-control-wrapper">
-                <input 
+                <input
                     className="form-control"
                     type="text"
                     placeholder="Search"
-                    onChange={this.onUpdateSearch}/>
+                    onChange={this.onUpdateSearch} />
             </div>
-        )    
+        )
     }
-    
+
 }

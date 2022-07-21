@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import TypeAnimation from "../type-animation/type-animation";
 import "./post-add-form.css";
 
@@ -28,7 +28,7 @@ export default class PostAddForm extends Component {
 
     render() {
         return (
-            <form 
+            <form
                 onSubmit={this.onSubmit}
                 className="bottom-panel">
                 <div className="bottom-panel-input-wrapper">
@@ -39,9 +39,9 @@ export default class PostAddForm extends Component {
                         onChange={this.onValueChange}
                         value={this.state.text}
                     />
-                    <TypeAnimation/>
+                    <TypeAnimation />
                 </div>
-                
+
                 <button
                     type="submit"
                     className="add-btn">Add</button>

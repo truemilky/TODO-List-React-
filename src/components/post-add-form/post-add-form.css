@@ -50,10 +50,12 @@
     .bottom-panel {
         flex-direction: column;
     }
+
     .form-conrol {
         width: 100%;
         min-width: auto;
     }
+
     .bottom-panel-input-wrapper {
         margin: 0;
         margin-bottom: 20px;
