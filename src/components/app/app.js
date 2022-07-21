@@ -4,6 +4,7 @@ import SearchPanel from "../search-panel/search-panel";
 import PostStatusFilter from "../post-status-filter/post-status-filter";
 import PostList from "../post-list/post-list";
 import PostAddForm from "../post-add-form/post-add-form";
+import Authorization from "../authorization/authorization";
 
 import "./app.css";
 
@@ -11,9 +12,13 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            data: [
+                { label: "This note is for test =)", important: true, liked: false, id: new Date().toISOString() }
+            ],
             term: '',
-            filter: 'all'
+            filter: 'all',
+            isLogged: false,
+            userName: ""
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
@@ -22,35 +27,56 @@ export default class App extends Component {
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
         this.setData = this.setData.bind(this);
-        this.getData = this.getData.bind(this);
+        this.setName = this.setName.bind(this);
+        this.getItem = this.getItem.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const storageUser = await this.getItem('userName');
+        const storageData = await this.getItem('data');
+        const isLoggedStorage = await this.getItem('isLogged');
+
         this.setState(() => {
-            if (!this.getData() || localStorage.getItem('data') === null) {
+            if (storageData) {
+                return {
+                    data: storageData,
+                    userName: storageUser,
+                    isLogged: isLoggedStorage
+                }
+            } else {
                 return {
                     data: [
                         { label: "This note is for test =)", important: true, liked: false, id: new Date().toISOString() }
-                    ]
+                    ],
+                    userName: storageUser,
+                    isLogged: isLoggedStorage
                 }
-            } else {
-                let localData = this.getData();
-
-                return {
-                    data: localData
-                }
-            };
+            }
         });
     }
 
-    getData() {
-        let objData = JSON.parse(localStorage.getItem('data'));
-        return objData;
+    getItem(item) {
+        const parsedItem = JSON.parse(localStorage.getItem(String(item)));
+        return parsedItem;
     }
 
     setData(data) {
         let jsonData = JSON.stringify(data);
         localStorage.setItem('data', jsonData);
+    }
+
+    setName(name) {
+        let jsonName = JSON.stringify(name);
+        localStorage.setItem('userName', jsonName);
+        let jsonLog = JSON.stringify(!this.state.isLogged);
+        localStorage.setItem('isLogged', jsonLog);
+
+        this.setState(() => {
+            return {
+                isLogged: !this.state.isLogged,
+                userName: name
+            }
+        })
     }
 
     searchPost(items, term) {
@@ -142,35 +168,47 @@ export default class App extends Component {
     }
 
     render() {
-        const { data, term, filter } = this.state;
+        const { data, term, filter, isLogged, userName } = this.state;
         const liked = data.filter(item => item.liked).length;
         const allPosts = data.length;
         const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
 
-
-        return (
-            <div className="app">
-                <AppHeader
-                    notes={allPosts}
-                    likes={liked} />
-                <div className="search-panel">
-
-                    <SearchPanel
-                        onUpdateSearch={this.onUpdateSearch} />
-
-                    <PostStatusFilter
-                        filter={filter}
-                        onFilterSelect={this.onFilterSelect} />
-
+        if (!isLogged) {
+            return (
+                <div className="app">
+                    <Authorization
+                        setName={this.setName}
+                        isLogged={isLogged} />
                 </div>
-                <PostList
-                    posts={visiblePosts}
-                    onDelete={this.deleteItem}
-                    onToggleLiked={this.onToggleLiked}
-                    onToggleImportant={this.onToggleImportant} />
-                <PostAddForm
-                    onAdd={this.addItem} />
-            </div>
-        )
+            )
+        } else {
+
+            return (
+                <div className="app">
+                    <AppHeader
+                        userName={userName}
+                        notes={allPosts}
+                        likes={liked} />
+                    <div className="search-panel">
+
+                        <SearchPanel
+                            onUpdateSearch={this.onUpdateSearch} />
+
+                        <PostStatusFilter
+                            filter={filter}
+                            onFilterSelect={this.onFilterSelect} />
+
+                    </div>
+                    <PostList
+                        posts={visiblePosts}
+                        onDelete={this.deleteItem}
+                        onToggleLiked={this.onToggleLiked}
+                        onToggleImportant={this.onToggleImportant} />
+                    <PostAddForm
+                        onAdd={this.addItem} />
+                </div>
+            )
+        }
+
     }
 }

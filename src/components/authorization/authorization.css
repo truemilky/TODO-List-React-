@@ -1,0 +1,26 @@
+.authorization-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.m-10 {
+    margin-right: 10px;
+}
+
+.error {
+    background-color: rgb(253, 208, 208);
+}
+
+@media(max-width: 440px) {
+    .authorization-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .m-10 {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

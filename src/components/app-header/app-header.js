@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./app-header.css";
 
 /* export default class AppHeader extends Component {
@@ -19,10 +19,10 @@ import "./app-header.css";
     }
 } */
 
-const AppHeader = ({ notes, likes }) => {
+const AppHeader = ({ notes, likes, userName }) => {
     return (
         <div className="app-header">
-            <h1>Rodion Peniavskyi</h1>
+            <h1>{userName}</h1>
             <h2>{notes} notes, {likes} notes you liked</h2>
         </div>
     )
