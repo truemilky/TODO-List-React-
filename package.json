@@ -2,7 +2,6 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://truemilky.github.io/TODO-List-React-App/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -39,5 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://truemilky.github.io/TODO-List-React-/"
+  "homepage": "https://truemilky.github.io/TODO-List-React-App/"
 }
